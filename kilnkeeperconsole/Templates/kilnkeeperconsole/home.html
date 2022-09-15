@@ -1,0 +1,73 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+    <meta http-equiv="refresh" content="5; URL=http://localhost:8000/">
+    <link rel="canonical" href="https://getbootstrap.com/docs/5.2/examples/dashboard/">
+
+    <link href="{% static 'css/main.css' %}" rel="stylesheet">
+    <title></title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+</head>
+<body>
+
+
+{% include 'kilnkeeperconsole/header.html' with actual=actual %}
+
+<div class="container-fluid">
+    <div class="row">
+            <main class="col-md-9 col-lg-10 px-md-4">
+                {% include 'kilnkeeperconsole/menu.html' with actual=actual %}
+            </main>
+        <div class="d-flex justify-content-center p-0 m-0">Running schedule: <div class="fw-bold ms-2">{{ schedule.name }}</div></div>
+        <canvas id="line-chart" height="30vh" width="80vw"></canvas>
+    </div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
+  <script>
+
+    var config = {
+      type: 'line',
+    data: {
+        labels: {{labels}},
+        datasets: [{
+            data: {{data}},
+            borderColor: "#c77030",
+            fill: false,
+        }
+        ]
+    },
+    options: {
+         animation: {
+        duration: 0
+    },
+        legend: {
+            display: false,
+            labels: {
+                display: false
+            }
+        },
+        plugins: {
+            legend: {
+                display: true,
+            }
+        }
+    },
+    config: {
+        type: 'line',
+        responsive: true
+    }
+    };
+
+    window.onload = function() {
+      var ctx = document.getElementById('line-chart').getContext('2d');
+      window.lineChart = new Chart(ctx, config);
+    };
+
+  </script>
+</body>
+</html>

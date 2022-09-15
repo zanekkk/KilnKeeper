@@ -1,0 +1,25 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>menu</title>
+    <script type="text/javascript" src="{% static 'js/home.js' %}" type="module"></script>
+</head>
+<body>
+<div class="d-flex justify-content-center flex-wrap flex-md-nowrap align-items-center pt-1 pb-2 mb-1">
+    <div class="btn-toolbar d-flex mb-2 mb-md-0">
+        <div class="btn-group me-2">
+            <a class="btn btn-sm btn-outline-secondary mr-1" href="/">DASHBOARD</a>
+            <a class="btn btn-sm btn-outline-secondary mr-1" href="/schedules">SCHEDULES</a>
+            <a class="btn btn-sm btn-outline-secondary mr-1" href="/history">HISTORY</a>
+            <a class="btn btn-sm btn-outline-secondary mr-1" href="/settings">SETTINGS</a>
+        </div>
+            <a class='btn btn-warning' href='{% url 'stop_firing' %}' id="STOP">Stop</a>
+    </div>
+</div>
+<script>
+</script>
+</body>
+</html>
